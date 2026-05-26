@@ -13,19 +13,17 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22 # Updated to Node 22 to prevent the deprecation error
           cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Project
-        run: npm run build
-
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
+        uses: amondnet/vercel-action@v42 # Upgraded to v42 for complete Node 24 support
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} # Required
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }} # Required
-          vercel-args: '--prod' # Deploy directly to production
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} 
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} 
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }} 
+          vercel-args: '--prod' 
+          vercel-build: true # Tells the action to manage the build flow smoothly inside the runner
