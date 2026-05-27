@@ -6,11 +6,12 @@ const Hero = () => {
   const contactInfo = {
     phone: "+91 9398217889",
     email: "sai.bhommidi@gmail.com",
-    location: "Hyderabad, India"
+    location: "Hyderabad, India",
+    linkedin: "https://linkedin.com/in/sai-bhommidi",
   };
 
   const handleDownload = () => {
-    // Points to the resume.pdf you successfully placed in the public folder
+    // Points to the resume.pdf in your public folder
     window.open("/resume.pdf", "_blank");
   };
 
@@ -34,9 +35,7 @@ const Hero = () => {
         <div className="text-2xl md:text-4xl font-bold text-slate-200 min-h-[60px]">
           <Typewriter
             options={{
-              strings: [
-                "SRE/DevOps Engineer"
-              ],
+              strings: ["SRE/DevOps Engineer"],
               autoStart: true,
               loop: true,
             }}
@@ -48,6 +47,7 @@ const Hero = () => {
           Specializing in AWS, Kubernetes, and automated disaster recovery.
         </p>
         
+        {/* Main Action Buttons */}
         <div className="flex flex-col md:flex-row gap-4 mt-8">
           <button 
             onClick={handleDownload}
@@ -56,14 +56,29 @@ const Hero = () => {
             Download Resume
           </button>
           
-          {/* Improved Email Link with Subject Line */}
           <a 
             href={`mailto:${contactInfo.email}?subject=Inquiry%20regarding%20Senior%20SRE%20Opportunities`}
-            className="px-8 py-4 border border-slate-700 text-white rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center justify-center"
+            className="px-8 py-4 border border-slate-700 text-white rounded-xl font-bold hover:bg-slate-800 hover:border-purple-500 transition-all flex flex-col items-center justify-center group active:scale-95"
           >
-            Email Me
+            <span>Email Me</span>
+            <span className="text-[11px] text-slate-500 group-hover:text-purple-400 font-mono mt-0.5">
+              {contactInfo.email}
+            </span>
           </a>
         </div>
+
+        {/* LinkedIn Link */}
+        <div className="mt-8">
+          <a 
+            href={contactInfo.linkedin} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-500 hover:text-blue-500 transition-colors font-mono text-sm tracking-widest uppercase flex items-center gap-2"
+          >
+            Connect on LinkedIn →
+          </a>
+        </div>
+
       </div>
     </section>
   );
